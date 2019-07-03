@@ -165,7 +165,7 @@
                             <a class="nav-link" id="women-bt" onclick="need('women')">Women</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="man-bt" onclick="need('man')">Man</a>
+                            <a class="nav-link" id="men-bt" onclick="need('men')">Men</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="kids-bt" onclick="need('kids')">Kids</a>
@@ -197,13 +197,13 @@
 
     <div class="card text-center jumbotron p-3 mb-5" style="background: transparent;" id="women">
     </div>
-    <div class="card text-center jumbotron p-3 mb-5" style="background: transparent;" id="man">
+    <div class="card text-center jumbotron p-3 mb-5" style="background: transparent;" id="men">
     </div>
     <div class="card text-center jumbotron p-3 mb-5" style="background: transparent;" id="kids">
     </div>
     <script>
         location.reload();
-        var div_id = ["home", "women", "man", "kids"];
+        var div_id = ["home", "women", "men", "kids"];
         for (i in div_id) {
             creart(div_id[i]);
             console.log(div_id[i]);
@@ -226,12 +226,12 @@
 
         }
         var home = document.getElementById('home');
-        var man = document.getElementById('man');
+        var men = document.getElementById('men');
         var women = document.getElementById('women');
         var kids = document.getElementById('kids');
         var homebt = document.getElementById('home-bt');
         var kidsbt = document.getElementById('kids-bt')
-        var manbt = document.getElementById('man-bt');
+        var menbt = document.getElementById('men-bt');
         var womenbt = document.getElementById('women-bt');
         need(div_id[0]);
 
