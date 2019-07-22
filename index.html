@@ -1,300 +1,495 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>
-        Elisa Industry
+      Elisa Industry
     </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-storage.js"></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style type="text/css">
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background-image: linear-gradient(45deg, #577994, #3a6580);
-            overflow-x: hidden;
-        }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(45deg, #577994, #3a6580);
+        overflow-x: hidden;
+        text-decoration: none;
+      }
 
-        .top {
-            height: 105vh;
-            text-align: center;
-            background-color: #7f9baa;
-            background-image: url("https://images.pexels.com/photos/1126993/pexels-photo-1126993.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: top;
-            background-repeat: no-repeat;
+      .top {
+        height: 105vh;
+        text-align: center;
+        background-color: #7f9baa;
+        background-image: url("https://images.pexels.com/photos/1126993/pexels-photo-1126993.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: top;
+        background-repeat: no-repeat;
+      }
 
-        }
+      .top h1 {
+        margin-top: 20vh;
+        color: white;
+        font: bold;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        font-size: 10ex;
+      }
 
-        .top h1 {
-            margin-top: 20vh;
-            color: white;
-            font: bold;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-            font-size: 10ex;
-        }
+      .home {
+        height: auto;
+        display: block;
+        border-radius: 9px;
+      }
 
-        .home {
-            height: auto;
-            display: block;
-            border-radius: 9px;
+      #navbar a {
+        float: left;
+        display: block;
+        text-align: center;
+        text-decoration: none;
+        text-shadow: 2px 2px 2px 2px lightgray;
+      }
 
-        }
+      .sticky {
+        position: fixed;
+        top: 0;
+        width: 95%;
+        float: initial;
+        margin-left: 0;
+        margin-right: 0;
+      }
 
-        #navbar a {
-            float: left;
-            display: block;
-            text-align: center;
-            text-decoration: none;
-            text-shadow: 2px 2px 2px 2px lightgray;
-        }
+      .p {
+        font-size: auto;
+        font-size-adjust: initial;
+        /* width: 80%; */
+        margin-top: 2vh;
+      }
 
-        .sticky {
-            position: fixed;
-            top: 0;
-            width: 95%;
-            float: initial;
-            margin-left: 0;
-            margin-right: 0;
-        }
+      .t {
+        font: 25px;
+      }
 
-        .p {
-            font-size: auto;
-            font-size-adjust: initial;
-            /* width: 80%; */
-            margin-top: 2vh;
-        }
+      .nav-link {
+        font-size: 20px;
+        color: white;
+        width: 100px;
+        text-decoration-color: none;
+      }
 
-        .t {
-            font: 25px;
-        }
+      .btn-primary {
+        color: #fff;
+        background-color: #015871;
+        border-color: transparent;
+      }
 
-        .nav-link {
-            font-size: 20px;
-            color: white;
-            width: 100px;
-            text-decoration-color: none;
+      a {
+        cursor: pointer;
+      }
 
-        }
+      .card {
+        border: 0;
+      }
 
-        .btn-primary {
-            color: #fff;
-            background-color: #015871;
-            border-color: transparent;
-        }
+      .item {
+        margin: 10px;
+        border-radius: 9px;
+      }
 
-        a {
-            cursor: pointer;
-        }
+      .foot {
+        background-image: linear-gradient(45deg, #04587a, #161842);
+        width: 100%;
+        height: auto;
+        border-radius: 0;
+        border-top-right-radius: 225px;
+        margin: 0;
+        /* border-radius: 0; */
+      }
 
-        .card {
-            border: 0;
-        }
+      .div_top {
+        width: 100%;
+        height: auto;
+        margin-bottom: 50px;
+        margin-top: -50px;
+        padding: 5px;
+        background-image: linear-gradient(45deg, #577994, #3a6580);
+        background-attachment: fixed;
+        color: white;
+        text-shadow: 0 8px 6px -6px black;
+        border-radius: 0;
+        border: transparent;
+        padding-top: 10px;
+      }
 
-        .item {
-            margin: 10px;
-            border-radius: 9px;
+      .login {
+        margin-bottom: 0;
+        align-content: center;
+        padding: 10px;
+      }
 
-        }
+      .login_btn {
+        border: 1px #4eade4 solid;
+        display: block;
+        color: #4eade4;
+        text-decoration: none;
+        border-radius: 4px;
+        margin-top: 10px;
+      }
 
-        .foot {
-            background-image: linear-gradient(45deg, #04587A, #161842);
-            width: 100%;
-            height: auto;
-            border-radius: 0;
-            border-top-right-radius: 225px;
-            margin: 0;
-            color: red;
-            /* border-radius: 0; */
-        }
+      .login_btn:hover {
+        background: #4eade4;
+        border: 1px transparent solid;
+      }
 
-        .div_top {
-            width: 100%;
-            height: auto;
-            margin-bottom: 50px;
-            margin-top: -50px;
-            padding: 5px;
-            background-image: linear-gradient(45deg, #577994, #3a6580);
-            background-attachment: fixed;
-            color: white;
-            text-shadow: 0 8px 6px -6px black;
-            border-radius: 0;
-            border: transparent;
-            padding-top: 10px;
-        }
+      #upload_btn {
+        color: blue;
+        margin-top: 20px;
+      }
     </style>
-</head>
-
-<body>
+  </head>
+  <body>
     <div class="jumbotron top shadow">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-#015871 static-top" href="javascript:void(0)"
-            style="background-image: linear-gradient(45deg, #04587A, #161842); text-decoration: none; display: block; border-radius: 5px; color: white;"
-            id="navbar">
-            <div class="container">
-                <a class="navbar-brand" onclick="window.location.reload();" style="color: white;">
-                    <img src="//" alt="" style="height: 43px;">
-                    Elisa Industry 
+      <nav
+        class="navbar navbar-expand-lg navbar-dark bg-#015871 static-top shadow"
+        href="javascript:void(0)"
+        style="background-image: linear-gradient(45deg, #04587A, #161842); text-decoration: none; display: block; border-radius: 5px; color: white;"
+        id="navbar"
+      >
+        <div class="container">
+          <a
+            class="navbar-brand"
+            onclick="window.location.reload();"
+            style="color: white;"
+          >
+            <img src="//" alt="" style="height: 43px;" />
+            Elisa Industry
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarResponsive"
+            aria-controls="navbarResponsive"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" id="home-bt" onclick="need(0)"
+                  >Home
+                  <span class="sr-only">(current)</span>
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" id="home-bt" onclick="need('home')">Home
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="women-bt" onclick="need('women')">Women</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="men-bt" onclick="need('men')">Men</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="kids-bt" onclick="need('kids')">Kids</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <script>
-            var navbar = document.getElementById("navbar");
-            var sticky = navbar.offsetTop;
-
-            function myFunction() {
-                if (window.pageYOffset == sticky) {
-                    navbar.classList.add("sticky");
-                } else {
-                    navbar.classList.remove("sticky");
-                }
-            }
-        </script>
-        <!-- <h1 class="content">Elisa <br> Industry</h1> -->
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="women-bt" onclick="need(1)">Women</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="men-bt" onclick="need(2)">Men</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="kids-bt" onclick="need(3)">Kids</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </div>
     <div class=" jumbotron div_top text-center">
-        <H1 id="div_top"></H1>
+      <H1 id="div_top"></H1>
+      <hr style="width: 80%" />
     </div>
-    <div class="card text-center jumbotron p-3 mb-5" id="home" style="background: transparent;">
+    <div
+      class="card text-center jumbotron p-3 mb-5"
+      id="home"
+      style="background: transparent;"
+    ></div>
+    <div
+      class="card text-center jumbotron p-3 mb-5"
+      style="background: transparent;"
+      id="women"
+    ></div>
+    <div
+      class="card text-center jumbotron p-3 mb-5"
+      style="background: transparent;"
+      id="men"
+    ></div>
+    <div
+      class="card text-center jumbotron p-3 mb-5"
+      style="background: transparent;"
+      id="kids"
+    ></div>
 
-    </div>
-
-    <div class="card text-center jumbotron p-3 mb-5" style="background: transparent;" id="women">
-    </div>
-    <div class="card text-center jumbotron p-3 mb-5" style="background: transparent;" id="men">
-    </div>
-    <div class="card text-center jumbotron p-3 mb-5" style="background: transparent;" id="kids">
-    </div>
-    <script>
-        var div_id = ["home", "women", "men", "kids"];
-        for (i in div_id) {
-            creart(div_id[i]);
-            console.log(div_id[i]);
-        }
-
-        function need(s) {
-            for (var i = 0; i < div_id.length; i++) {
-                console.log(div_id[i], typeof (div_id[i]), div_id.length, s);
-                if (div_id[i] != s) {
-                    document.getElementById(div_id[i]).style.display = "none";
-                    console.log(s + " off ", div_id[i])
-                } else {
-                    document.getElementById(div_id[i]).style.display = "block";
-                    console.log(s + " on", div_id[i])
-                    document.getElementById("div_top").innerHTML = div_id[i].toUpperCase();
-
-                }
-
-            }
-
-        }
-        var home = document.getElementById('home');
-        var men = document.getElementById('men');
-        var women = document.getElementById('women');
-        var kids = document.getElementById('kids');
-        var homebt = document.getElementById('home-bt');
-        var kidsbt = document.getElementById('kids-bt')
-        var menbt = document.getElementById('men-bt');
-        var womenbt = document.getElementById('women-bt');
-        need(div_id[0]);
-
-        function creart(s) {
-            var row = document.createElement("div");
-            row.className = "row";
-            row.id = "items " + s;
-            document.getElementById(s).appendChild(row);
-            for (var i = 0; i < 30; i++) {
-                var card = document.createElement("div");
-                card.className = "card h-100 shadow hi";
-                var a_img = document.createElement("a");
-                a_img.href = "#";
-                var image = document.createElement("img");
-                image.src =
-                    "https://images.pexels.com/photos/8434/holiday-trip-packaging-8434.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1060";
-                image.className = "card-img-top";
-                a_img.appendChild(image);
-                card.appendChild(a_img);
-                var body = document.createElement("div");
-                body.className = "card-body";
-                var c_title = document.createElement("h4");
-                c_title.className = "card-title";
-                var title = document.createElement("a");
-                title.href = "#";
-                title.innerHTML = s;
-                c_title.appendChild(title);
-                body.append(c_title);
-                var price = document.createElement("h5");
-                price.innerHTML = "$24.99";
-                body.appendChild(price);
-                var caption = document.createElement("p");
-                caption.className = "card-text";
-                caption.innerHTML =
-                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet."
-                body.appendChild(caption);
-                card.appendChild(body);
-                var main_div = document.createElement("div");
-                main_div.className = "col-lg-3 col-md- mb-2";
-                main_div.appendChild(card)
-                document.getElementById("items " + s).appendChild(main_div);
-            }
-        }
-    </script>
     <div class="jumbotron foot shadow">
-        <a>
-            Admin Login
-        </a>
+      <a onclick="auth()" id="admin" href="#login_div">
+        Admin Login
+      </a>
+
+      <br />
+      <br />
+      <div class="row">
+        <div
+          class="col-md-6 text-center jumbotron login justify-content-center"
+          id="login_div"
+        >
+          <h4>Log in</h4>
+          <hr />
+          <label>User name</label>
+          <input type="text" id="username" />
+          <label>Password</label>
+          <input type="password" id="password" />
+          <br />
+          <a
+            onclick="check()"
+            class="login_btn"
+            id="login_btn"
+            href="#upload_div"
+            >Login</a
+          >
+          <div class="jumbotron" id="upload_div">
+            <hr />
+            <h5>Upload</h5>
+            <hr />
+            <label>Catagory</label>
+            <select id="select">
+              <option>select one...</option>
+              <option>men</option>
+              <option>women</option>
+              <option>kids</option>
+            </select>
+            <br />
+            <label>Item name: </label>
+            <input type="text" name="item_name" id="item_name" />
+            <br />
+            <label>Price: </label>
+            <input type="number" name="number" id="price" />
+            <br />
+            <label>Description: </label>
+            <input type="text" name="caption" id="description" height="100px" />
+            <br />
+            <label>Image: </label>
+            <input type="file" id="file" />
+            <br />
+            <br />
+            <br />
+
+            <!-- <a id="add_btn">
+              <h4>Add item</h4>
+            </a> -->
+            <br />
+          </div>
+        </div>
+      </div>
     </div>
     <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyCqbzTbuxG5YBUbx1rpJuzEud4SXuxUuJs",
-            authDomain: "elisa-f3588.firebaseapp.com",
-            databaseURL: "https://elisa-f3588.firebaseio.com",
-            projectId: "elisa-f3588",
-            storageBucket: "",
-            messagingSenderId: "752986424453",
-            appId: "1:752986424453:web:f5f61d0a46695506"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+      var firebaseConfig = {
+        apiKey: "AIzaSyCqbzTbuxG5YBUbx1rpJuzEud4SXuxUuJs",
+        authDomain: "elisa-f3588.firebaseapp.com",
+        databaseURL: "https://elisa-f3588.firebaseio.com",
+        projectId: "elisa-f3588",
+        storageBucket: "elisa-f3588.appspot.com",
+        messagingSenderId: "752986424453",
+        appId: "1:752986424453:web:f5f61d0a46695506"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      //var database = firebase.database();
+      function writeUserData(catagory, name, price, imageUrl, caption) {
+        firebase
+          .database()
+          .ref("Items/" + name)
+          .set({
+            catagory: catagory,
+            name: name,
+            price: price,
+            image: imageUrl,
+            caption: caption
+          });
+      }
+      var home = document.getElementById("home");
+      var men = document.getElementById("men");
+      var women = document.getElementById("women");
+      var kids = document.getElementById("kids");
+      var homebt = document.getElementById("home-bt");
+      var kidsbt = document.getElementById("kids-bt");
+      var menbt = document.getElementById("men-bt");
+      var womenbt = document.getElementById("women-bt");
+      var login_div = document.getElementById("login_div");
+      var upload_div = document.getElementById("upload_div");
+
+      var catagory = document.getElementById("select");
+      var add_item = document.getElementById("add_btn");
+      var item_name = document.getElementById("item_name");
+      var price = document.getElementById("price");
+      var caption = document.getElementById("description");
+
+      var filebutton = document.getElementById("file");
+      var URL;
+      filebutton.addEventListener("change", function(e) {
+        var file = e.target.files[0];
+        var ref = firebase.storage().ref();
+        var upload = ref.child("home/" + file.name).put(file);
+        upload.on(
+          "state_changed",
+          function(snapshot) {},
+          function(e) {},
+          function() {
+            upload.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+              URL = String(downloadURL);
+              console.log(downloadURL);
+              writeUserData(
+                catagory.value,
+                item_name.value,
+                "$" + price.value,
+                String(downloadURL),
+                caption.value
+              );
+              catagory.value = "";
+              item_name.value = "";
+              price.value = "";
+              caption.value = "";
+              location.reload();
+            });
+          }
+        );
+      });
+      var div_idd = ["home", "women", "men", "kids"];
+      var div_iddd = ["home", "women", "men", "kids"];
+
+      function need(s) {
+        for (var i = 0; i < div_idd.length; i++) {
+          if (div_idd[i] != div_idd[s]) {
+            document.getElementById(div_idd[i]).style.display = "none";
+          } else {
+            document.getElementById(div_idd[i]).style.display = "block";
+            document.getElementById("div_top").innerHTML = div_idd[
+              s
+            ].toUpperCase();
+          }
+        }
+      }
+      var item = [];
+      var o = 0;
+      var leadsRef = firebase.database().ref("Items");
+      leadsRef.on("value", function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+          var c = childSnapshot.val();
+          creater(
+            "hi",
+            c["image"],
+            c["price"],
+            c["caption"],
+            "home",
+            "https://us.romwe.com/Guys-Abstract-Geo-Print-Hooded-Sweatshirt-p-340678-cat-853.html?url_from=usplasweatsh180629165M_ssc&gclid=Cj0KCQjwvdXpBRCoARIsAMJSKqIe2egzmDJ4Dz0tGkCV4-4xoCmXJCODOT7Fs0ksqjv5HmNH_outSKIaAsmYEALw_wcB"
+          );
+          creater(
+            "hi",
+            c["image"],
+            c["price"],
+            c["caption"],
+            c["catagory"],
+            "https://us.romwe.com/Guys-Abstract-Geo-Print-Hooded-Sweatshirt-p-340678-cat-853.html?url_from=usplasweatsh180629165M_ssc&gclid=Cj0KCQjwvdXpBRCoARIsAMJSKqIe2egzmDJ4Dz0tGkCV4-4xoCmXJCODOT7Fs0ksqjv5HmNH_outSKIaAsmYEALw_wcB"
+          );
+        });
+      });
+
+      upload_div.style.display = "none";
+      login_div.style.display = "none";
+      need(0);
+
+      function setup(div_ID) {
+        var row = document.createElement("div");
+        row.className = "row";
+        row.id = "items " + div_ID;
+        document.getElementById(div_ID).appendChild(row);
+      }
+      for (i in div_idd) {
+        setup(div_idd[i]);
+      }
+
+      function creater(title, url, price, caption, div_id, redirect) {
+        var card = document.createElement("div");
+        card.className = "card h-100 shadow hi";
+        var a_img = document.createElement("a");
+        a_img.href = redirect;
+        var image = document.createElement("img");
+        image.src = url;
+        image.className = "card-img-top";
+        a_img.appendChild(image);
+        card.appendChild(a_img);
+        var body = document.createElement("div");
+        body.className = "card-body";
+
+        var c_title = document.createElement("h4");
+        c_title.className = "card-title";
+        var titlee = document.createElement("a");
+        titlee.href = redirect;
+        titlee.innerHTML = title;
+        c_title.appendChild(titlee);
+        body.append(c_title);
+        var pricee = document.createElement("h5");
+        pricee.innerHTML = price;
+        body.appendChild(pricee);
+
+        var captionn = document.createElement("p");
+        captionn.className = "card-text";
+        captionn.innerHTML = caption;
+        body.appendChild(captionn);
+        card.appendChild(body);
+        var main_div = document.createElement("div");
+        main_div.className = "col-lg-3 col-md- mb-2";
+        main_div.appendChild(card);
+        document.getElementById("items " + div_id).appendChild(main_div);
+      }
+
+      function print(c) {
+        console.log(c);
+      }
+      var username = document.getElementById("username");
+      var password = document.getElementById("password");
+
+      function auth() {
+        login_div.style.display = "block";
+      }
+
+      function check() {
+        if (username.value == "admin") {
+          if (password.value == "red") {
+            upload_div.style.display = "block";
+          }
+        } else {
+          alert("no");
+        }
+      }
     </script>
-
-</body>
-
+  </body>
 </html>
