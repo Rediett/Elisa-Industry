@@ -29,8 +29,13 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style type="text/css">
+      .responsive {
+        width: 100%;
+        height: auto;
+      }
       html,
       body {
         margin: 0;
@@ -171,6 +176,25 @@
         color: blue;
         margin-top: 20px;
       }
+      #overlay {
+        position: absolute;
+        display: none;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 2;
+        margin: 0;
+      }
+      .over_cont {
+        background: white;
+        text-align: center;
+        padding: 10px;
+        border-radius: 9px;
+      }
     </style>
   </head>
   <body>
@@ -204,19 +228,29 @@
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link" id="home-bt" onclick="need(0)"
+                <a class="nav-link" id="home-bt" onclick="need(0)" href="#home"
                   >Home
                   <span class="sr-only">(current)</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="women-bt" onclick="need(1)">Women</a>
+                <a
+                  class="nav-link"
+                  id="women-bt"
+                  onclick="need(1)"
+                  href="#women"
+                  >Women</a
+                >
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="men-bt" onclick="need(2)">Men</a>
+                <a class="nav-link" id="men-bt" onclick="need(2)" href="#men"
+                  >Men</a
+                >
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="kids-bt" onclick="need(3)">Kids</a>
+                <a class="nav-link" id="kids-bt" onclick="need(3)" href="#kids"
+                  >Kids</a
+                >
               </li>
             </ul>
           </div>
@@ -309,7 +343,33 @@
         </div>
       </div>
     </div>
+    <div id="overlay" class="row">
+      <div class="container over_cont" id="overlay_cont">
+        <button type="button" class="close" aria-label="Close" onclick="off()">
+          <span aria-hidden="true" style=" font-size: 40px; ">&times;</span>
+        </button>
+        <img
+          src=""
+          class="img-responsive"
+          alt="Cinque Terre"
+          id="over_img"
+          height="504"
+        />
+        <h1 id="over_titel"></h1>
+        <h2 id="over_price"></h2>
+        <p id="over_caption"></p>
+        <br />
+        <button type="button" class="btn btn-primary">Buy now</button>
+      </div>
+    </div>
     <script>
+      while (window.innerWidth == 768) {
+        alert("Use different devices!!!");
+      }
+      function pageScroll() {
+        window.scrollBy(0, 1);
+        scrolldelay = setTimeout(pageScroll, 10);
+      }
       var firebaseConfig = {
         apiKey: "AIzaSyCqbzTbuxG5YBUbx1rpJuzEud4SXuxUuJs",
         authDomain: "elisa-f3588.firebaseapp.com",
@@ -322,7 +382,6 @@
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
 
-      //var database = firebase.database();
       function writeUserData(catagory, name, price, imageUrl, caption) {
         firebase
           .database()
@@ -403,22 +462,26 @@
       leadsRef.on("value", function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
           var c = childSnapshot.val();
-          creater(
-            c["name"],
-            c["image"],
-            c["price"],
-            c["caption"],
-            "home",
-            "https://us.romwe.com/Guys-Abstract-Geo-Print-Hooded-Sweatshirt-p-340678-cat-853.html?url_from=usplasweatsh180629165M_ssc&gclid=Cj0KCQjwvdXpBRCoARIsAMJSKqIe2egzmDJ4Dz0tGkCV4-4xoCmXJCODOT7Fs0ksqjv5HmNH_outSKIaAsmYEALw_wcB"
-          );
-          creater(
-            c["name"],
-            c["image"],
-            c["price"],
-            c["caption"],
-            c["catagory"],
-            "https://us.romwe.com/Guys-Abstract-Geo-Print-Hooded-Sweatshirt-p-340678-cat-853.html?url_from=usplasweatsh180629165M_ssc&gclid=Cj0KCQjwvdXpBRCoARIsAMJSKqIe2egzmDJ4Dz0tGkCV4-4xoCmXJCODOT7Fs0ksqjv5HmNH_outSKIaAsmYEALw_wcB"
-          );
+          item.push(c["name"]);
+          if (item.includes(c["name"])) {
+            creater(
+              c["name"],
+              c["image"],
+              c["price"],
+              c["caption"],
+              "home",
+              "https://us.romwe.com/Guys-Abstract-Geo-Print-Hooded-Sweatshirt-p-340678-cat-853.html?url_from=usplasweatsh180629165M_ssc&gclid=Cj0KCQjwvdXpBRCoARIsAMJSKqIe2egzmDJ4Dz0tGkCV4-4xoCmXJCODOT7Fs0ksqjv5HmNH_outSKIaAsmYEALw_wcB"
+            );
+            creater(
+              c["name"],
+              c["image"],
+              c["price"],
+              c["caption"],
+              c["catagory"],
+              "https://us.romwe.com/Guys-Abstract-Geo-Print-Hooded-Sweatshirt-p-340678-cat-853.html?url_from=usplasweatsh180629165M_ssc&gclid=Cj0KCQjwvdXpBRCoARIsAMJSKqIe2egzmDJ4Dz0tGkCV4-4xoCmXJCODOT7Fs0ksqjv5HmNH_outSKIaAsmYEALw_wcB"
+            );
+            console.log(getPixel(c["image"], 10, 10));
+          }
         });
       });
 
@@ -440,7 +503,8 @@
         var card = document.createElement("div");
         card.className = "card h-100 shadow hi";
         var a_img = document.createElement("a");
-        a_img.href = redirect;
+        //a_img.href = redirect;
+        a_img.setAttribute("onclick", "go('" + title + "')");
         var image = document.createElement("img");
         image.src = url;
         image.className = "card-img-top";
@@ -448,37 +512,77 @@
         card.appendChild(a_img);
         var body = document.createElement("div");
         body.className = "card-body";
-
         var c_title = document.createElement("h4");
         c_title.className = "card-title";
         var titlee = document.createElement("a");
-        titlee.href = redirect;
+        //titlee.href = redirect;
+        titlee.setAttribute("onclick", "go('" + title + "')");
         titlee.innerHTML = title;
         c_title.appendChild(titlee);
         body.append(c_title);
         var pricee = document.createElement("h5");
         pricee.innerHTML = price;
         body.appendChild(pricee);
-
         var captionn = document.createElement("p");
         captionn.className = "card-text";
         captionn.innerHTML = caption;
         body.appendChild(captionn);
         card.appendChild(body);
         var main_div = document.createElement("div");
-        main_div.className = "col-lg-3 col-md- mb-2";
+        main_div.className = "col-lg-2 col-md-2 mb-2";
         main_div.appendChild(card);
         document.getElementById("items " + div_id).appendChild(main_div);
       }
 
-      function print(c) {
-        console.log(c);
+      function creat_overlay_content(title_, price_, image_, caption_) {
+        var _image = document.getElementById("over_img");
+        var _title = document.getElementById("over_titel");
+        var _price = document.getElementById("over_price");
+        var _caption = document.getElementById("over_caption");
+        _image.src = image_;
+        _title.innerHTML = title_;
+        _caption.innerHTML = caption_;
+        _price.innerHTML = price_;
       }
+
       var username = document.getElementById("username");
       var password = document.getElementById("password");
 
       function auth() {
         login_div.style.display = "block";
+      }
+      var over_lay = document.getElementById("overlay_cont");
+
+      function go(x) {
+        document.getElementById("overlay").style.display = "block";
+        var leadsRef = firebase.database().ref("Items");
+        leadsRef.on("value", function(snapshot) {
+          snapshot.forEach(function(childSnapshot) {
+            var c = childSnapshot.val();
+            if (c["name"] == x) {
+              creat_overlay_content(
+                c["name"],
+                c["price"],
+                c["image"],
+                c["caption"]
+              );
+            }
+            document.getElementById("overlay").style.paddingTop =
+              (window.innerHeight - over_lay.clientHeight) / 2 + "px";
+          });
+        });
+      }
+
+      function off() {
+        var _image = document.getElementById("over_img");
+        var _title = document.getElementById("over_titel");
+        var _price = document.getElementById("over_price");
+        var _caption = document.getElementById("over_caption");
+        _image.src = "";
+        _title.innerHTML = "";
+        _caption.innerHTML = "";
+        _price.innerHTML = "";
+        document.getElementById("overlay").style.display = "none";
       }
 
       function check() {
@@ -489,6 +593,15 @@
         } else {
           alert("no");
         }
+      }
+
+      function getPixel(url, x, y) {
+        var img = new Image();
+        img.src = url;
+        var canvas = document.createElement("canvas");
+        var context = canvas.getContext("2d");
+        context.drawImage(img, 0, 0);
+        return context.getImageData(x, y, 1, 1).data;
       }
     </script>
   </body>
